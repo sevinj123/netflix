@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="./assets/js/style.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-4">
+                <img style="width: 100%;" src="" class="pokemon-img">
+            </div>
+            <div class="col-8">
+                <h2 class="pokemon-name text-center"></h2>
+                <div class="dark-area stat-area clearfix row container">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="./assets/js/percircle.js"></script>
+    <script>
+        const filmId=window.location.search.substring(4)  //id nin yaninda olan reqemden basqa herf isareni silir
+        $.ajax({
+            method:'GET',
+            url:"https://api.tvmaze.com/shows/"+filmId,
+            success:function(res){
+                $('.row').append(  
+                        `  <img style="width: 100%;" src="${res.image.original}" class="pokemon-img">
+            </div>
+            <div class="col-8">
+                <h2 class="pokemon-name text-center">${res.name}</h2>
+                <div class="dark-area stat-area clearfix row container">
+                </div>`
+
+                )    
+            },
+            error:function(err){
+                console.log(err);
+            }
+
+        })
+       
+      
+    </script>
+</body>
+
+</html>
